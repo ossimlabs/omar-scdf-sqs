@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/omar-scdf-sqs.iml" filepath="$PROJECT_DIR$/omar-scdf-sqs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/omar-scdf-sqs_main.iml" filepath="$PROJECT_DIR$/.idea/modules/omar-scdf-sqs_main.iml" group="omar-scdf-sqs" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/omar-scdf-sqs_test.iml" filepath="$PROJECT_DIR$/.idea/modules/omar-scdf-sqs_test.iml" group="omar-scdf-sqs" />
+    </modules>
+  </component>
+</project>

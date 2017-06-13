@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.springframework.cloud:spring-cloud-starter-aws-messaging:1.2.0.RELEASE">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.cloud/spring-cloud-starter-aws-messaging/1.2.0.RELEASE/4065f92d97f86b3e6afee62a7497bf9157a29238/spring-cloud-starter-aws-messaging-1.2.0.RELEASE.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.cloud/spring-cloud-starter-aws-messaging/1.2.0.RELEASE/a8161352f0322333bd8d469f1b9308f199f3cd30/spring-cloud-starter-aws-messaging-1.2.0.RELEASE-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.springframework.cloud:spring-cloud-aws-core:1.2.0.RELEASE">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.cloud/spring-cloud-aws-core/1.2.0.RELEASE/d2ee13ebbbf1f7e7fe7f5c14cfb10a978d7afe2b/spring-cloud-aws-core-1.2.0.RELEASE.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.cloud/spring-cloud-aws-core/1.2.0.RELEASE/d2cc3b88fd6915b269836c2b8e0c029e4705115d/spring-cloud-aws-core-1.2.0.RELEASE-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
