@@ -1,15 +1,14 @@
 package io.ossim.omar.scdf.sqs
 
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
+import groovy.util.logging.Slf4j
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.cloud.aws.messaging.listener.SqsMessageDeletionPolicy
 import org.springframework.cloud.aws.messaging.listener.annotation.SqsListener
 import org.springframework.cloud.stream.annotation.EnableBinding
 import org.springframework.cloud.stream.messaging.Source
-import org.springframework.integration.annotation.InboundChannelAdapter
 import org.springframework.messaging.handler.annotation.MessageMapping
+import org.springframework.messaging.handler.annotation.SendTo
 
 /**
  * Created by adrake on 5/31/2017
@@ -22,54 +21,34 @@ import org.springframework.messaging.handler.annotation.MessageMapping
  */
 @SpringBootApplication
 @EnableBinding(Source.class)
-class OmarScdfSqsApplication {
-
-	/**
-	 * The application logger
-	 */
-	private final Logger logger = LoggerFactory.getLogger(this.getClass())
-
-    /**
-     * The AWS S3 bucket and file name
-     */
-    private String sqsMessage
+@Slf4j
+class OmarScdfSqsApplication
+{
 
 	/**
 	 * Constructor
 	 */
-	OmarScdfSqsApplication(){
-
-	}
+	OmarScdfSqsApplication() {}
 
 	/**
 	 * The main entry point of the SCDF Sqs application.
 	 * @param args
 	 */
-	static void main(String[] args) {
+	static void main(String[] args)
+	{
 		SpringApplication.run OmarScdfSqsApplication, args
 	}
 
-    /**
-     * The callback for when an SQS message is received
-     * @param message the body of the SQS message from the queue
-     */
-	 @MessageMapping('${queue.name}')
-	 @SqsListener(value = '${queue.name}', deletionPolicy = SqsMessageDeletionPolicy.ALWAYS)
-	 void receive(final String message) {
-
-		if(logger.isDebugEnabled()) {
-			logger.debug("Message received: ${message}")
-		}
-
-         sqsMessage = message
-	}
-
-    /**
-     * The SCDF funtion to send parsed data long to the next piece in the chain
-     * @return the parsed JSON data
-     */
-	@InboundChannelAdapter(Source.OUTPUT)
-	final String send() {
-        sqsMessage
+	/**
+	 * The callback for when an SQS message is received
+	 * @param message the body of the SQS message from the queue
+	 */
+	@MessageMapping('${queue.name}')
+	@SqsListener(value = '${queue.name}', deletionPolicy = SqsMessageDeletionPolicy.ALWAYS)
+	@SendTo(Source.OUTPUT)
+	String receive(final String message)
+	{
+		log.debug("Forwarding message from queue: ${message}")
+		return message
 	}
 }
