@@ -43,8 +43,8 @@ class OmarScdfSqsApplication
 	 * The callback for when an SQS message is received
 	 * @param message the body of the SQS message from the queue
 	 */
-	@MessageMapping('${queue.name}')
-	@SqsListener(value = '${queue.name}', deletionPolicy = SqsMessageDeletionPolicy.ON_SUCCESS)
+	@MessageMapping("stephen-queue")
+	@SqsListener(value = "stephen-queue", deletionPolicy = SqsMessageDeletionPolicy.ON_SUCCESS)
 	@SendTo(Source.OUTPUT)
 	final String receive(String message)
 	{
