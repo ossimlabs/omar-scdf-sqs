@@ -8,7 +8,6 @@ import org.springframework.cloud.aws.messaging.listener.annotation.SqsListener
 import org.springframework.cloud.stream.annotation.EnableBinding
 import org.springframework.cloud.stream.messaging.Source
 import org.springframework.messaging.handler.annotation.MessageMapping
-import org.springframework.messaging.handler.annotation.SendTo
 
 /**
  * Created by adrake on 5/31/2017
@@ -43,10 +42,9 @@ class OmarScdfSqsApplication
 	 * The callback for when an SQS message is received
 	 * @param message the body of the SQS message from the queue
 	 */
-	@MessageMapping("stephen-queue")
-	@SqsListener(value = "stephen-queue", deletionPolicy = SqsMessageDeletionPolicy.ON_SUCCESS)
-	@SendTo(Source.OUTPUT)
-	final String receive(String message)
+	@MessageMapping('${queue.name}')
+	@SqsListener(value = '${queue.name}', deletionPolicy = SqsMessageDeletionPolicy.ON_SUCCESS)
+	final String receiveFromSqsQueue(final String message)
 	{
 		log.debug("Forwarding message from queue: ${message}")
 		return message
