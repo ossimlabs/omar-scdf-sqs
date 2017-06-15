@@ -1,6 +1,7 @@
 package io.ossim.omar.scdf.sqs
 
 import groovy.util.logging.Slf4j
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.cloud.aws.messaging.listener.SqsMessageDeletionPolicy
@@ -31,6 +32,7 @@ class OmarScdfSqsApplication
     /**
      * Output channel
      */
+    @Autowired
     @Output(Source.OUTPUT)
     private MessageChannel outputChannel
 
@@ -57,13 +59,13 @@ class OmarScdfSqsApplication
 	void receiveFromSqsQueue(final String message)
 	{
 		log.debug("Forwarding message from queue: ${message}")
-        sendMessageOnOutputStream(message)
+        log.debug("Message sent: ${sendMessageOnOutputStream(message)}")
 	}
 
     /**
      * Sends message to an Output stream
      */
-    void sendMessageOnOutputStream(String message)
+    boolean sendMessageOnOutputStream(String message)
     {
         Message<String> messageToSend = MessageBuilder.withPayload(message)
                 .setHeader(MessageHeaders.CONTENT_TYPE, '${spring.cloud.stream.bindings.output.content.type}')
