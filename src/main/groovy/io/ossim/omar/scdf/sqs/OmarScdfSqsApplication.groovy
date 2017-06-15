@@ -36,16 +36,11 @@ class OmarScdfSqsApplication
     @Output(Source.OUTPUT)
     private MessageChannel outputChannel
 
-    /**
-	 * Constructor
-	 */
-	OmarScdfSqsApplication() {}
-
 	/**
 	 * The main entry point of the SCDF Sqs application.
 	 * @param args
 	 */
-	static void main(String[] args)
+	static final void main(String[] args)
 	{
 		SpringApplication.run OmarScdfSqsApplication, args
 	}
