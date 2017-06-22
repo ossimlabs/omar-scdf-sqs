@@ -1,5 +1,11 @@
 # omar-scdf-sqs
-The OMAR SQS listener is a Spring Cloud Data Flow (SCDF) Source. This means that it sends some sort of data, in this case an SQS message, to any listening SCDF Processors.
+The OMAR SCDF SQS Listener is a Spring Cloud Data Flow (SCDF) Source.
+This means it:
+1. Listens on an AWS SQS Queue for a message.
+2. Forwards the message on a Spring Cloud output stream using Kafka to a listening SCDF Processor.
+
+## Purpose
+The OMAR SCDF SQS Listener receives a message from the SQS Queue and forwards it to any SCDF Processors that need it. For the purposes of our EV-WHS and LongDwell ingest flow, it typically sends it to the OMAR SCDF S3 Filter.
 
 ## Input Example (from an SQS Queue)
 ```json
