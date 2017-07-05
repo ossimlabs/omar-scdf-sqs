@@ -1,5 +1,6 @@
 buildscript {
 	ext {
+    baseImage = "omar-base"
 		springBootVersion = '1.5.3.RELEASE'
 	}
 	if(System.env.OMAR_COMMON_PROPERTIES)
