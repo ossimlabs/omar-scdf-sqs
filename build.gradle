@@ -19,7 +19,7 @@ buildscript {
             "WORKDIR /usr/share/omar",
             "VOLUME /tmp",
             "EXPOSE 8080",
-            'CMD ["java", "-jar",  jarFileFullPath]'
+            'CMD ["java", "-jar", "$jarFileFullPath"]'
 //            "ENTRYPOINT java -jar /usr/share/omar/${project.name}-${buildVersion}-${buildVersionTag}.jar"
        ]
 }
