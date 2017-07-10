@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '1.3.5.RELEASE'
+        springBootVersion = '1.5.3.RELEASE'
         baseImage = "omar-base"
         dockerStatementsOverride = {
         [
@@ -57,7 +57,7 @@ repositories {
 
 
 ext {
-    springCloudVersion = 'Brixton.RELEASE'
+    springCloudVersion = 'Dalston.RELEASE'
 }
 
 dependencies {
