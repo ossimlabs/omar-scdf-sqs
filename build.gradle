@@ -7,6 +7,7 @@ buildscript {
             "FROM ${project.dockerNamespaceUrl}${project.ext.baseImage}:${project.dockerAppTag}",
             "MAINTAINER DigitalGlobe-RadiantBlue",
             """LABEL com.digitalglobe.version="" """,
+            "ARG jarFileFullPath = /usr/share/omar/${project.name}-${buildVersion}-${buildVersionTag}.jar",
             'RUN useradd -u 1001 -r -g 0 -d $HOME -s /sbin/nologin -c "Default Application User" omar',
             "RUN mkdir /usr/share/omar",
             "COPY /${project.name}-${buildVersion}-${buildVersionTag}.jar /usr/share/omar",
@@ -18,7 +19,7 @@ buildscript {
             "WORKDIR /usr/share/omar",
             "VOLUME /tmp",
             "EXPOSE 8080",
-            'CMD ["java", "-jar,"  "/usr/share/omar/'"${project.name}"'-'"${buildVersion}"'-'"${buildVersionTag}"'.jar"]'
+            'CMD ["java", "-jar,"  $jarFileFullPath]'
 //            "ENTRYPOINT java -jar /usr/share/omar/${project.name}-${buildVersion}-${buildVersionTag}.jar"
        ]
 }
