@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '1.5.3.RELEASE'
+        springBootVersion = '1.3.5.RELEASE'
         baseImage = "omar-base"
         dockerStatementsOverride = {
         [
@@ -18,8 +18,7 @@ buildscript {
             "WORKDIR /usr/share/omar",
             "VOLUME /tmp",
             "EXPOSE 8080",
-            'CMD [ "java", "-jar", "/usr/share/omar/omar-scdf-sqs-1.0.37-SNAPSHOT.jar"]'
-//           "CMD java -Xms256m -Xmx1024m -Dspring.profiles.active=production -Djava.security.egd=file:/dev/./urandom -jar /usr/share/omar/${project.name}-${buildVersion}-${buildVersionTag}.jar"
+          "CMD java -Xms256m -Xmx1024m -Dspring.profiles.active=production -Djava.security.egd=file:/dev/./urandom -jar /usr/share/omar/${project.name}-${buildVersion}-${buildVersionTag}.jar"
 //            "ENTRYPOINT java -jar /usr/share/omar/${project.name}-${buildVersion}-${buildVersionTag}.jar"
        ]
 }
@@ -58,7 +57,7 @@ repositories {
 
 
 ext {
-    springCloudVersion = 'Dalston.RELEASE'
+    springCloudVersion = 'Brixton.RELEASE'
 }
 
 dependencies {
