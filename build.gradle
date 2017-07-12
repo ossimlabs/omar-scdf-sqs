@@ -7,7 +7,6 @@ buildscript {
             "FROM ${project.dockerNamespaceUrl}${project.ext.baseImage}:${project.dockerAppTag}",
             "MAINTAINER DigitalGlobe-RadiantBlue",
             """LABEL com.digitalglobe.version="" """,
-            "ARG jarFileFullPath=/usr/share/omar/${project.name}-${buildVersion}-${buildVersionTag}.jar",
             'RUN useradd -u 1001 -r -g 0 -d $HOME -s /sbin/nologin -c "Default Application User" omar',
             "RUN mkdir /usr/share/omar",
             "COPY /${project.name}-${buildVersion}-${buildVersionTag}.jar /usr/share/omar",
@@ -19,7 +18,8 @@ buildscript {
             "WORKDIR /usr/share/omar",
             "VOLUME /tmp",
             "EXPOSE 8080",
-           "ENTRYPOINT java -Xms256m -Xmx1024m -Dspring.profiles.active=production -Djava.security.egd=file:/dev/./urandom -jar /usr/share/omar/${project.name}-${buildVersion}-${buildVersionTag}.jar"
+            'ENTRYPOINT [ "sh", "-c", "java -Xms256m -Xmx1024m -Dspring.profiles.active=production -Djava.security.egd=file:/dev/./urandom -jar /usr/share/omar/'+"${project.name}-${buildVersion}-${buildVersionTag}.jar"+'" ]'
+//           "ENTRYPOINT java -Xms256m -Xmx1024m -Dspring.profiles.active=production -Djava.security.egd=file:/dev/./urandom -jar /usr/share/omar/${project.name}-${buildVersion}-${buildVersionTag}.jar"
        ]
 }
     }
