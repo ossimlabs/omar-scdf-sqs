@@ -21,7 +21,7 @@ buildscript {
             "RUN chmod a+rx /usr/share/omar/${project.name}-${buildVersion}-${buildVersionTag}.jar",
 //           "ENTRYPOINT java -jar /usr/share/omar/${project.name}-${buildVersion}-${buildVersionTag}.jar"
 //            'ENTRYPOINT ["java","-jar","/usr/share/omar/'+"${project.name}-${buildVersion}-${buildVersionTag}.jar"+'" ]',
-            'ENTRYPOINT ["java"]',
+            'ENTRYPOINT ["/usr/bin/java"]',
             'CMD ["-jar","/usr/share/omar/'+"${project.name}-${buildVersion}-${buildVersionTag}.jar"+'" ]'
        ]
 }
