@@ -1,1 +1,2 @@
-exec java -jar /usr/share/omar/$1
+#! /bin/sh
+java -jar /usr/share/omar/$1
