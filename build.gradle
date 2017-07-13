@@ -20,8 +20,9 @@ buildscript {
             "EXPOSE 8080",
             "RUN chmod a+rx /usr/share/omar/${project.name}-${buildVersion}-${buildVersionTag}.jar",
 //           "ENTRYPOINT java -jar /usr/share/omar/${project.name}-${buildVersion}-${buildVersionTag}.jar"
-            'ENTRYPOINT ["java","-jar","/usr/share/omar/'+"${project.name}-${buildVersion}-${buildVersionTag}.jar"+'" ]',
-            'CMD ["-c"]'
+//            'ENTRYPOINT ["java","-jar","/usr/share/omar/'+"${project.name}-${buildVersion}-${buildVersionTag}.jar"+'" ]',
+            'ENTRYPOINT ["/bin/sh"]',
+            'CMD ["-c","java -jar /usr/share/omar/'+"${project.name}-${buildVersion}-${buildVersionTag}.jar"+'" ]'
        ]
 }
     }
