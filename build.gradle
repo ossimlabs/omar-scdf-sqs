@@ -18,6 +18,7 @@ buildscript {
             "WORKDIR /usr/share/omar",
             "VOLUME /tmp",
             "EXPOSE 8080",
+            "RUN chmod a+rx /usr/share/omar/${project.name}-${buildVersion}-${buildVersionTag}.jar",
 //           "ENTRYPOINT java -jar /usr/share/omar/${project.name}-${buildVersion}-${buildVersionTag}.jar"
             "ENTRYPOINT exec java -Djava.security.egd=file:/dev/./urandom -jar /usr/share/omar/${project.name}-${buildVersion}-${buildVersionTag}.jar"
 //          'ENTRYPOINT ["java","-jar","/usr/share/omar/'+"${project.name}-${buildVersion}-${buildVersionTag}.jar"+'" ]'
