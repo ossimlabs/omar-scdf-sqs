@@ -18,7 +18,8 @@ buildscript {
             "WORKDIR /usr/share/omar",
             "VOLUME /tmp",
             "EXPOSE 8080",
-            'ENTRYPOINT [ "sh", "-c", "java -Xms256m -Xmx1024m -Dspring.profiles.active=production -Djava.security.egd=file:/dev/./urandom -jar /usr/share/omar/'+"${project.name}-${buildVersion}-${buildVersionTag}.jar"+'" ]'
+            'ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-Dspring.profiles.active=production","-jar","/usr/share/omar/'+"${project.name}-${buildVersion}-${buildVersionTag}.jar"+'" ]'
+//            'ENTRYPOINT [ "sh", "-c", "java -Xms256m -Xmx1024m -Dspring.profiles.active=production -Djava.security.egd=file:/dev/./urandom -jar /usr/share/omar/'+"${project.name}-${buildVersion}-${buildVersionTag}.jar"+'" ]'
 //           "ENTRYPOINT java -Xms256m -Xmx1024m -Dspring.profiles.active=production -Djava.security.egd=file:/dev/./urandom -jar /usr/share/omar/${project.name}-${buildVersion}-${buildVersionTag}.jar"
        ]
 }
