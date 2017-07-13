@@ -2,17 +2,16 @@ buildscript {
     ext {
         springBootVersion = '1.5.3.RELEASE'
         baseImage = "omar-base"
-        dockerFile = project.file("docker/Dockerfile")
+        entryPointStyle="""'{"spring":{"cloud":{"deployer":{"kubernetes":{"entryPointStyle":"boot"}}}}}'"""
         dockerStatementsOverride = {
         [
             "FROM ${project.dockerNamespaceUrl}${project.ext.baseImage}:${project.dockerAppTag}",
             "MAINTAINER DigitalGlobe-RadiantBlue",
             """LABEL com.digitalglobe.version="" """,
+            "ENV SPRING_APPLICATION_JSON=${entryPointStyle}",
             'RUN useradd -u 1001 -r -g 0 -d $HOME -s /sbin/nologin -c "Default Application User" omar',
             "RUN mkdir /usr/share/omar",
-            "COPY run-script.sh /usr/share/omar",
-            "RUN chmod a+rx /usr/share/omar/run-script.sh",
-            'ENTRYPOINT ["/usr/share/omar/run-script.sh"]',
+            "COPY /${project.name}-${buildVersion}-${buildVersionTag}.jar /usr/share/omar",
             "RUN chown -R 1001:0 /usr/share/omar",
             "RUN chown 1001:0 /usr/share/omar",
             "RUN chmod -R g+rw /usr/share/omar",
@@ -21,9 +20,9 @@ buildscript {
             "WORKDIR /usr/share/omar",
             "VOLUME /tmp",
             "EXPOSE 8080",
-            "RUN /usr/share/omar/run-script.sh ${project.name}-${buildVersion}-${buildVersionTag}.jar"
-//           'ENTRYPOINT [ "java","-jar", "/usr/share/omar/'+"${project.name}-${buildVersion}-${buildVersionTag}.jar"+'" ]'
-//            "ENTRYPOINT boot java -Xms256m -Xmx1024m -Dspring.profiles.active=production -Djava.security.egd=file:/dev/./urandom -jar /usr/share/omar/${project.name}-${buildVersion}-${buildVersionTag}.jar"
+            'ENTRYPOINT ["/usr/bin/java"]',
+            'CMD [ "-jar","/usr/share/omar/'+"${project.name}-${buildVersion}-${buildVersionTag}.jar"+'" ]'
+//           'ENTRYPOINT [ "sh", "-c", "java -Xms256m -Xmx1024m -Dspring.profiles.active=production -Djava.security.egd=file:/dev/./urandom -jar /usr/share/omar/'+"${project.name}-${buildVersion}-${buildVersionTag}.jar"+'" ]'
        ]
 }
     }
