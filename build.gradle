@@ -2,13 +2,11 @@ buildscript {
     ext {
         springBootVersion = '1.5.3.RELEASE'
         baseImage = "omar-base"
-        entryPointStyle="""'{"spring":{"cloud":{"deployer":{"kubernetes":{"entryPointStyle":"boot"}}}}}'"""
         dockerStatementsOverride = {
         [
             "FROM ${project.dockerNamespaceUrl}${project.ext.baseImage}:${project.dockerAppTag}",
             "MAINTAINER DigitalGlobe-RadiantBlue",
             """LABEL com.digitalglobe.version="" """,
-            "ENV SPRING_APPLICATION_JSON=${entryPointStyle}",
             'RUN useradd -u 1001 -r -g 0 -d $HOME -s /sbin/nologin -c "Default Application User" omar',
             "RUN mkdir /usr/share/omar",
             "COPY /${project.name}-${buildVersion}-${buildVersionTag}.jar /usr/share/omar",
@@ -21,7 +19,7 @@ buildscript {
             "VOLUME /tmp",
             "EXPOSE 8080",
             'ENTRYPOINT ["/usr/bin/java"]',
-            'CMD [ "-jar","/usr/share/omar/'+"${project.name}-${buildVersion}-${buildVersionTag}.jar"+'" ]'
+            'CMD [ "-jar","-Dspring.cloud.deployer.kubernetes.entryPointStyle=boot","/usr/share/omar/'+"${project.name}-${buildVersion}-${buildVersionTag}.jar"+'" ]'
 //           'ENTRYPOINT [ "sh", "-c", "java -Xms256m -Xmx1024m -Dspring.profiles.active=production -Djava.security.egd=file:/dev/./urandom -jar /usr/share/omar/'+"${project.name}-${buildVersion}-${buildVersionTag}.jar"+'" ]'
        ]
 }
