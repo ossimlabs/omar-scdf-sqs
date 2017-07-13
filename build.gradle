@@ -20,7 +20,7 @@ buildscript {
             "EXPOSE 8080",
 //            'ENTRYPOINT ["/usr/bin/java"]',
 //            'CMD [ "-jar","/usr/share/omar/'+"${project.name}-${buildVersion}-${buildVersionTag}.jar"+'" ]'
-          'ENTRYPOINT [ "sh", "-c", "java -Xms256m -Xmx1024m -Dspring.profiles.active=production -Djava.security.egd=file:/dev/./urandom -jar /usr/share/omar/'+"${project.name}-${buildVersion}-${buildVersionTag}.jar"+'" ]'
+          'ENTRYPOINT [ "java","-jar","/usr/share/omar/'+"${project.name}-${buildVersion}-${buildVersionTag}.jar"+'" ]'
        ]
 }
     }
