@@ -62,6 +62,10 @@ class OmarScdfSqsApplication
      */
     boolean sendMessageOnOutputStream(String message)
     {
-      outputChannel.send(message)
+        Message<String> messageToSend = MessageBuilder.withPayload(message)
+        .setHeader(MessageHeaders.CONTENT_TYPE, '${spring.cloud.stream.bindings.output.content.type}')
+        .build()
+
+        outputChannel.send(messageToSend)
     }
 }
