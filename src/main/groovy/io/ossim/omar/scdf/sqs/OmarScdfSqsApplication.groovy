@@ -29,12 +29,12 @@ import org.springframework.messaging.support.MessageBuilder
 @Slf4j
 class OmarScdfSqsApplication
 {
-    /**
-     * Output channel
-     */
-    @Autowired
-    @Output(Source.OUTPUT)
-    private MessageChannel outputChannel
+  /**
+   * Output channel
+   */
+  @Autowired
+  @Output(Source.OUTPUT)
+  private MessageChannel outputChannel
 
 	/**
 	 * The main entry point of the SCDF Sqs application.
@@ -49,12 +49,12 @@ class OmarScdfSqsApplication
 	 * The callback for when an SQS message is received
 	 * @param message the body of the SQS message from the queue
 	 */
-    @MessageMapping('${queue.name}')
+  @MessageMapping('${queue.name}')
 	@SqsListener(value = '${queue.name}', deletionPolicy = SqsMessageDeletionPolicy.ON_SUCCESS)
 	void receiveFromSqsQueue(final String message)
 	{
 		log.debug("Forwarding message from queue: ${message}")
-        log.debug("Message sent: ${sendMessageOnOutputStream(message)}")
+    log.debug("Message sent: ${sendMessageOnOutputStream(message)}")
 	}
 
     /**
@@ -62,10 +62,6 @@ class OmarScdfSqsApplication
      */
     boolean sendMessageOnOutputStream(String message)
     {
-        Message<String> messageToSend = MessageBuilder.withPayload(message)
-                .setHeader(MessageHeaders.CONTENT_TYPE, '${spring.cloud.stream.bindings.output.content.type}')
-                .build()
-
-        outputChannel.send(messageToSend)
+      outputChannel.send(message)
     }
 }
