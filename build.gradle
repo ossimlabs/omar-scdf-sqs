@@ -59,8 +59,14 @@ dependencies {
     compile('org.springframework.cloud:spring-cloud-starter-aws')
     compile('org.springframework.cloud:spring-cloud-starter-config')
     compile('org.springframework.cloud:spring-cloud-starter-aws-messaging')
-    compile('org.springframework.cloud:spring-cloud-stream-binder-kafka')
-    compile('org.springframework.cloud:spring-cloud-stream-binder-rabbit')
+    if(System.env.SCDF_STREAM_BINDER == "RABBIT")
+    {
+        compile('org.springframework.cloud:spring-cloud-stream-binder-rabbit')
+    }
+    else
+    {
+        compile('org.springframework.cloud:spring-cloud-stream-binder-kafka')
+    }
     compile('org.codehaus.groovy:groovy')
     compile('org.codehaus.groovy:groovy-json')
     testCompile('org.springframework.boot:spring-boot-starter-test')
