@@ -3,13 +3,19 @@ spring:
     name: omar-scdf-sqs
   cloud:
     config:
-      enabled: false
+      enabled: true
       uri: http://localhost:8888/omar-config-server
     discovery:
       enabled: false
 ---
 spring:
-  profiles: production
+  application:
+    name: omar-scdf-sqs
+  profiles:
+      active: production
   cloud:
     config:
+      enabled: true
       uri: http://scdf-config-server:8888/omar-config-server
+    discovery:
+      enabled: false
