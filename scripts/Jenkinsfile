@@ -38,7 +38,8 @@ node(""){
                 // It's important to add --info because of SONARJNKNS-281
                 sh """
                   pushd ${workspaceDir}/${appName}/
-                  ./gradlew --info sonarqube -Dsonar.projectKey=${appName}
+                  printenv
+                  ./gradlew --info --no-daemon sonarqube -Dsonar.projectKey=${appName}
                   popd
                 """
             }
