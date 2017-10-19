@@ -39,7 +39,7 @@ node(""){
                 sh """
                   pushd ${workspaceDir}/${appName}/
                   printenv
-                  ./gradlew --info --no-daemon sonarqube -Dsonar.projectKey=${appName}
+                  ./gradlew --info sonarqube -Dsonar.projectKey=${appName}
                   popd
                 """
             }
