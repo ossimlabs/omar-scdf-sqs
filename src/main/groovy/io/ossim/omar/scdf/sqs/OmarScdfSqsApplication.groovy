@@ -54,7 +54,7 @@ class OmarScdfSqsApplication
 	void receiveFromSqsQueue(final String message)
 	{
 		log.debug("Forwarding message from queue: ${message}")
-    log.debug("Message sent: ${sendMessageOnOutputStream(message)}")
+        log.debug("Message sent: ${sendMessageOnOutputStream(message)}")
 	}
 
     /**
@@ -69,3 +69,4 @@ class OmarScdfSqsApplication
         outputChannel.send(messageToSend)
     }
 }
+
